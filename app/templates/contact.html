@@ -1,0 +1,195 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+
+<div class="gray">
+  <div class="container align-center">
+
+    <main id="main">
+
+          <!-- ======= Intro Single ======= -->
+          <section class="intro-single">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12 col-lg-8">
+                  <div class="title-single-box">
+                    <h1 class="title-single">Contact US</h1>
+                    <p>Emerald Interior Home LTD <br class="visible-md visible-lg">luse Zone 3, </p>
+                    <span class="color-text-a"> <p>Abuja Federal Capital Territory</p> <p>Nigeria.</p></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section><!-- End Intro Single-->
+      
+          <!-- ======= Contact Single ======= -->
+          <section class="contact">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-12 section-t8">
+                  <div class="row">
+                    <div class="col-md-7">
+
+                      <form action="" method="POST" >
+                        {{ form.hidden_tag() }}
+                        <div class="row">
+                          <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                              {{ form.name.label(class= "form-control-label") }}
+                                {% if form.name.errors %}
+                                    {{ form.name(class= "form-control form-control-lg is-invalid") }}
+                                    <div class="invalid-feedback">
+                                         {% for error in form.name.errors %}
+                                           <span class="alert-danger"> {{ error }} </span>
+                                         {% endfor%}
+                                    </div>
+                                {% else%}
+                                     {{ form.name(class= "form-control form-control-lg") }}
+                                {% endif%}
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                              {{ form.contact_email.label(class= "form-control-label") }}
+                               {% if form.contact_email.errors %}
+                                   {{ form.contact_email(class= "form-control form-control-lg is-invalid") }}
+                                    <div class="invalid-feedback">
+                                         {% for error in form.contact_email.errors%}
+                                           <span class="alert-danger"> {{ error }} </span>
+                                         {% endfor%}
+                                    </div>
+                                {% else %}
+                                     {{ form.contact_email(class= "form-control form-control-lg") }}
+                                {% endif%}
+                            </div>
+                          </div>
+                          <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                              {{ form.subject.label(class= "form-control-label") }}
+                                {% if form.subject.errors %}
+                                   {{ form.subject(class= "form-control form-control-lg is-invalid") }}
+                                    <div class="invalid-feedback">
+                                         {% for error in form.subject.errors %}
+                                           <span class="alert-danger"> {{ error }} </span>
+                                         {% endfor%}
+                                    </div>
+                                {% else%}
+                                     {{ form.subject(class= "form-control form-control-lg") }}
+                                {% endif%}
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              {{ form.message.label(class= "form-control-label") }}
+                                {% if form.message.errors %}
+                                    {{ form.message(class= "form-control form-control-lg is-invalid") }}
+                                    <div class="invalid-feedback">
+                                         {% for error in form.message.errors%}
+                                            <span class="alert-danger"> {{ error }} </span>
+                                         {% endfor%}
+                                    </div>
+                                {% else%}
+                                     {{ form.message(class= "form-control form-control-lg") }}
+                                {% endif%}
+                            </div>
+                          </div>
+                          <div class="col-md-12 my-3">
+                            <div class="mb-3">
+                              <div class="loading">Loading</div>
+                              <div class="error-message"></div>
+                              <div class="sent-message">Your message has been sent. Thank you!</div>
+                            </div>
+                          </div>
+      
+                          <div class=" text-center ">
+                             {{ form.submit( class="col-md-3 col-sm-6 btn btn-success") }}
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="col-md-5 section-md-t3">
+                      <div class="icon-box section-b2">
+                        <div class="icon-box-icon">
+                          <span class="bi bi-envelope"></span>
+                        </div>
+                        <div class="icon-box-content table-cell">
+                          <div class="icon-box-title">
+                            <h4 class="icon-title">Say Hello</h4>
+                          </div>
+                          <div class="icon-box-content">
+                            <p class="mb-1">Email.
+                              <span class="color-a">emeraldinteriorservices@gmail.com</span>
+                            </p>
+                            <p class="mb-1">Phone.
+                              <span class="color-a">08098006801,</span>
+                              <span class="color-a">08081722453</span>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="icon-box section-b2">
+                        <div class="icon-box-icon">
+                          <span class="bi bi-geo-alt"></span>
+                        </div>
+                        <div class="icon-box-content table-cell">
+                          <div class="icon-box-title">
+                            <h4 class="icon-title">Find us in</h4>
+                          </div>
+                          <div class="icon-box-content">
+                            <p class="mb-1">
+                              luse Zone 3,
+                              <br> Abuja.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="icon-box">
+                        <div class="icon-box-icon">
+                          <span class="bi bi-share"></span>
+                        </div>
+                        <div class="icon-box-content table-cell">
+                          <div class="icon-box-title">
+                            <h4 class="icon-title">Social networks</h4>
+                          </div>
+                          <div class="icon-box-content">
+                            <div class="socials-footer">
+                              <ul class="list-inline">
+                                <li class="list-inline-item">
+                                  <a href="#" class="link-one">
+                                    <i class="bi bi-facebook" aria-hidden="true"></i>
+                                  </a>
+                                </li>
+                                <li class="list-inline-item">
+                                  <a href="#" class="link-one">
+                                    <i class="bi bi-twitter" aria-hidden="true"></i>
+                                  </a>
+                                </li>
+                                <li class="list-inline-item">
+                                  <a href="https://instagram.com/emerald_interior_homes_ltd?igshid=ZGUzMzM3NWJiOQ==" class="link-one">
+                                    <i class="bi bi-instagram" aria-hidden="true"></i>
+                                  </a>
+                                </li>
+                                <li class="list-inline-item">
+                                  <a href="https://wa.link/82jonp" class="link-one">
+                                    <i class="bi bi-whatsapp" aria-hidden="true"></i>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section><!-- End Contact Single-->
+      
+    </main><!-- End #main -->
+   
+  </div> 
+  {% endblock content %}
+
+
+

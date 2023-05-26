@@ -1,0 +1,97 @@
+{% extends 'Admin/layouts.html' %}
+
+{% block content %}
+
+   <div id="content-wrapper">
+
+     <div class="container-fluid">
+
+       <!-- Breadcrumbs-->
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item">
+           <a href="#">Dashboard</a>
+         </li>
+         <li class="breadcrumb-item active">Tables</li>
+       </ol>
+
+       <!-- Post DataTables Example -->
+       <br><br>  <h2 style="text-align:center ;"> POSTS TABLE</h2> 
+       <div class="col-md-7 align-self-center">
+        <a href="{{url_for('product.productpost')}}" class="btn waves-effect waves-light btn btn-info pull-right hidden-sm-down"> Add new product</a>
+    </div><br>
+       <div class="card mb-3">
+         <div class="card-header">
+           <i class="fas fa-table"></i>
+           Data Table Example</div>
+         <div class="card-body">
+           <div class="table-responsive">
+             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+               <thead>
+                 <tr>
+                    <th>S/N</th>
+                    <th>FIRST_NAME</th>
+                    <th>LAST_NAME</th>
+                    <th>EMAIL</th>
+                    <th>PHONE</th>
+                    <th>COUNTRY</th>
+                    <th>CITY</th>
+                    <th>STREET </th>
+                    <th>BUILDING</th>
+                    <th>ZIP</th>
+                    <th>EXPECTING DATE</th>
+                    <th>INVOICE</th>
+                    <th>CUSTOMER_ID</th>
+                    <th>TOTAL-PRICE</th>
+                    <th>ORDERS</th>
+                    <th>DELETE</th>
+                 </tr>
+               </thead>
+               <tbody>
+               {% for user in checkout %}
+               <tr>
+                   <td>{{ user.id }}</td>
+                   <td>{{ user.firstname }}</td>
+                   <td>{{ user.lastname }}</td>
+                   <td>{{ user.email }}</td>
+                   <td>{{ user.phone }}</td>
+                   <td>{{ user.country }}</td>
+                   <td>{{ user.city }}</td>
+                   <td>{{ user.street }}</td>
+                   <td>{{ user.building }}</td>
+                   <td>{{ user.zip }}</td>
+                   <td>{{ user.date_created }}</td>
+                   <td>{{ user.invoice }}</td>
+                   <td>{{ user.customer_id }}</td>
+                   <td>{{ user.grandtotal }}</td>
+                   <td>{{ user.orders }} </td>
+                   <td>
+                       <div class="dropdown">
+                           <a href="/catalog" class="dropdown-toggle"
+                              data-toggle="dropdown" role="button" aria-haspopup="true"
+                              aria-expanded="false">ACTION <span class="caret"></span></a>
+                           <div class="dropdown-menu">
+                               <li class="bx bx-trash me-1"><a href="{{ url_for('order.delete_order',order_id=user.id) }}">DELETE</a></li>
+                           </div>
+                       </div>
+                   </td>
+               </tr>
+
+                {% endfor %}
+
+               </tbody>
+             </table>
+           </div>
+
+         </div>
+         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+       </div>
+
+       <p class="small text-center text-muted my-5">
+         <em>More table examples coming soon...</em>
+       </p>
+
+     </div>
+     </div>
+
+   
+       {% endblock content %}

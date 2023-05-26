@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<main id="main">
+
+  <!-- ======= Intro Single ======= -->
+  <section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">Our Amazing Products</h1>
+            <span class="color-text-a">Sofa Set Products</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Intro Single -->
+
+
+
+</main><!-- End #main -->
+
+
+
+    <div class="container">
+      <div class="row">
+        <!-- Filter -->
+        <div class="col-sm-12 filter">
+
+        <!-- Products -->
+        <div class="col-sm-12 products">
+          <div style="align-items: center" class="row">
+            {% for prod in product.items %}
+            <div class="col-sm-6 col-md-3  product">
+                 <br>
+              <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
+              <a href="/catalog"><img src="{{url_for('static', filename='img/' + prod.image)}}" alt="HP Chromebook 11"/></a>
+
+              <div class="content">
+                <h1 class="h4">{{ prod.name }}</h1>
+                <p class="price">₦{{ prod.price }}</p>
+                   {% if prod.discount != 0 %}
+                  <p class="price through">₦{{ prod.discount }}%</p>
+                  {% endif %}
+                <label>{{ prod.category }}</label>
+                  <div style="display: flex">
+                <a href="{{ url_for('product.products', product_id=prod.id) }}" class="btn btn-link"> Details</a>
+                <form action="{{ url_for('carts.AddCart') }}" method="POST" enctype="multipart/form-data">
+                  <input type="hidden" name="product_id" value="{{prod.id}}">
+                  <button type="submit" class="btn btn-primary btn-rounded"> <i class="ion-bag"></i> Add to cart</button>
+                 
+                  <input type="hidden" name="quantity" id=""  value="1" min="1" max="100">
+              </form>
+               
+                  </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+
+        </div>
+        </div>
+      </div>
+    </div>
+    <br><br> 
+
+    <hr>
+     <div class="container" style="width: 50%">
+     {% for page_num in product.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+         {% if page_num %}
+             {% if product.page == page_num %}
+                <a style="align-items: center" class=" btn btn-success mb-4 " href="{{ url_for('product.product', page=page_num) }}">{{ page_num }}</a>
+             {% else %}
+                 <a style="align-items: center; border:1px solid silver" class=" btn btn-outline-info mb-4 " href="{{ url_for('product.product', page=page_num) }}">{{ page_num }}</a>
+             {% endif %}
+       {% else %}
+            ...
+         {% endif %}
+     {% endfor %}
+     </div>
+   <hr>
+{% endblock content %}

@@ -1,0 +1,145 @@
+{% extends 'Admin/layouts.html' %}
+
+{% block content %}
+
+   <div id="content-wrapper">
+
+     <div class="container-fluid">
+
+       <!-- Breadcrumbs-->
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item">
+           <a href="#">Dashboard</a>
+         </li>
+         <li class="breadcrumb-item active">Tables</li>
+       </ol>
+
+       <!-- Post DataTables Example -->
+       <br><br>  <h2 style="text-align:center ;"> POSTS TABLE</h2>
+       <div class="card mb-3">
+         <div class="card-header">
+           <i class="fas fa-table"></i>
+           Data Table Example</div>
+         <div class="card-body">
+           <div class="table-responsive">
+             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+               <thead>
+                 <tr>
+                   <th>ID</th>
+                   <th>Title</th>
+                   <th>Date Posted</th>
+                   <th>Posted Pics</th>
+                   <th>Update Post</th>
+                   <th>Salary</th>
+                 </tr>
+               </thead>
+               <tfoot>
+                 <tr>
+                   <th>ID</th>
+                   <th>Title</th>
+                   <th>Date Posted</th>
+                   <th>Posted Pics</th>
+                   <th>Update Post</th>
+                   <th>Salary</th>
+                 </tr>
+               </tfoot>
+               <tbody>
+                {% for row in post %}
+                 <tr>
+                   <td> {{row.id}} </td>
+                   <td>{{ row.title }}</td>
+                   <td>{{ row.date_posted}}</td>
+                   <td>{{ row.image_pic}}</td>
+                   <td><a class="btn-secondary btn" href="{{url_for('posts.update_post', post_id=row.id)}}"> Update </a></td>
+                   <td>
+                     <button type="button" class="btn btn-danger btn-sm m-2" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                   </td>
+                 </tr>
+
+                 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel">Delete Post</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <form action="{{ url_for('posts.delete_post', post_id=row.id) }}" method="POST" style="display: inline-block">
+                                <input class="btn-danger" type="submit" value="Delete">
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                {% endfor %}
+
+               </tbody>
+             </table>
+           </div>
+
+         </div>
+         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+       </div>
+
+       <!-- Database for Users -->
+                 <br><br>  <h2 style="text-align:center ;"> USERS TABLE</h2>
+
+       <div class="card mb-3">
+         <div class="card-header">
+           <i class="fas fa-table"></i>
+           Data Table Example</div>
+         <div class="card-body">
+           <div class="table-responsive">
+             <table class="table table-bordered" width="100%" cellspacing="0">
+               <thead>
+                 <tr>
+                   <th>ID</th>
+                   <th>Username</th>
+                   <th>Email</th>
+                   <th>Profile Pics</th>
+                   <th>Date Posted</th>
+                   <th>Salary</th>
+                 </tr>
+               </thead>
+               <tfoot>
+                 <tr>
+                   <th>ID</th>
+                   <th>Username</th>
+                   <th>Email</th>
+                   <th>Profile Pics</th>
+                   <th>Date Posted</th>
+                   <th>Salary</th>
+                 </tr>
+               </tfoot>
+               <tbody>
+                {% for rows in user %}
+                 <tr>
+                   <td> {{rows.id}} </td>
+                   <td>{{ rows.username }}</td>
+                   <td>{{ rows.email}}</td>
+                   <td>{{ rows.image_file}}</td>
+                   <td>2011/04/25</td>
+                   <td>$320,800</td>
+                 </tr>
+                {% endfor %}
+     
+               </tbody>
+             </table>
+           </div>
+
+         </div>
+         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+       </div>
+
+       <p class="small text-center text-muted my-5">
+         <em>More table examples coming soon...</em>
+       </p>
+
+     </div>
+     </div>
+
+     <!-- /.container-fluid -->
+       {% endblock content %}

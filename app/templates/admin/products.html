@@ -1,0 +1,92 @@
+{% extends 'Admin/layouts.html' %}
+
+{% block content %}
+
+   <div id="content-wrapper">
+
+     <div class="container-fluid">
+
+       <!-- Breadcrumbs-->
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item">
+           <a href="#">Dashboard</a>
+         </li>
+         <li class="breadcrumb-item active">Tables</li>
+       </ol>
+
+       <!-- Post DataTables Example -->
+       <br><br>  <h2 style="text-align:center ;"> POSTS TABLE</h2> 
+       <div class="col-md-7 align-self-center">
+        <a href="{{url_for('product.productpost')}}" class="btn waves-effect waves-light btn btn-info pull-right hidden-sm-down"> Add new product</a>
+    </div><br>
+       <div class="card mb-3">
+         <div class="card-header">
+           <i class="fas fa-table"></i>
+           Data Table Example</div>
+         <div class="card-body">
+           <div class="table-responsive">
+             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+               <thead>
+                 <tr>
+                   <th>ID</th>
+                   <th> Name</th>
+                   <th>Image</th>
+                   <th>Price</th>
+                   <th>Discount</th>
+                   <th>Category</th>
+                   <th>Price</th>
+                   <th>Edit</th>
+                   <th>Action</th>
+                 </tr>
+               </thead>
+               <tbody>
+                {% for prod in product %}
+                 <tr>
+                  <td> {{prod.id}} </td>
+                   <td>{{ prod.name }}</td> 
+                   <td><img  src="{{url_for('static', filename='img/' + prod.image)}}" width="50" height="50"/></td>
+                   <td>{{prod.price}}</td>
+                   <td>{{prod.discount}}</td>
+                   <td>{{prod.category}}</td>
+                   <td>{{prod.price}}</td> 
+                   <td><a class="btn-success btn" href=""> Edit </a></td>
+                   <td>
+                     <button type="button" class="btn btn-danger btn-sm m-2" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                   </td>
+                 </tr>
+
+                 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel">Delete Post</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <form action="{{ url_for('main.delete_prod',prod_id=prod.id) }}" method="POST" style="display: inline-block">
+                                <input class="btn-danger" type="submit" value="Delete">
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                {% endfor %}
+
+               </tbody>
+             </table>
+           </div>
+
+         </div>
+         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+       </div>
+
+
+
+     </div>
+     </div>
+
+     <!-- /.container-fluid -->
+       {% endblock content %}
