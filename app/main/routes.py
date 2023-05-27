@@ -91,19 +91,16 @@ def returnpolicy():
 
 
 @main.route('/terms', methods=['GET', 'POST'])
-@login_required
 def terms():
     return render_template("terms.html")
 
 
 @main.route('/privacy', methods=['GET', 'POST'])
-@login_required
 def privacy():
     return render_template("privacy.html")
 
 
 @main.route('/contact', methods=['GET', 'POST'])
-@login_required
 def contact():
     user = User
     form = ContactForm()
